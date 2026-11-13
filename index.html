@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StackPad — Undo / Redo Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">S</span><div><h1>StackPad</h1><p>Smart Undo / Redo Text Editor</p></div></div>
+      <div class="status"><span class="status-dot"></span> Local session</div>
+    </header>
+
+    <section class="toolbar">
+      <div class="toolbar-label">HISTORY CONTROLS</div>
+      <div class="toolbar-actions">
+        <button id="undoBtn" class="button secondary" disabled>↶ Undo <kbd>Ctrl Z</kbd></button>
+        <button id="redoBtn" class="button secondary" disabled>↷ Redo <kbd>Ctrl Y</kbd></button>
+        <button id="clearBtn" class="button danger">Clear document</button>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="editor-panel panel">
+        <div class="panel-heading"><div><span class="eyebrow">DOCUMENT</span><h2>Your text</h2></div><span id="saveState" class="muted">Changes are stored in this session</span></div>
+        <textarea id="documentText" readonly placeholder="Your document will appear here..."></textarea>
+        <div class="editor-footer"><span id="charCount">0 characters</span><span id="wordCount">0 words</span></div>
+      </div>
+
+      <aside class="side-panel">
+        <section class="panel action-panel">
+          <div class="panel-heading"><div><span class="eyebrow">EDIT TOOLS</span><h2>Make a change</h2></div></div>
+          <label for="position">Position <small>(zero-based index)</small></label>
+          <input id="position" type="number" min="0" value="0">
+          <div class="field-group">
+            <label for="textInput">Text</label>
+            <input id="textInput" type="text" placeholder="Enter text">
+          </div>
+          <div class="button-grid">
+            <button id="insertBtn" class="button primary">＋ Insert</button>
+            <button id="deleteBtn" class="button secondary">− Delete</button>
+          </div>
+          <div class="divider"></div>
+          <label for="replaceText">Replacement text</label>
+          <input id="replaceText" type="text" placeholder="New text">
+          <button id="replaceBtn" class="button secondary full">⇄ Replace at position</button>
+          <p id="message" class="message" role="status">Choose an operation to edit the document.</p>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="panel-heading"><div><span class="eyebrow">ACTION LOG</span><h2>History</h2></div><span id="historyCount" class="count">0</span></div>
+          <ol id="historyList" class="history-list"><li class="empty">No actions yet.</li></ol>
+        </section>
+      </aside>
+    </section>
+    <footer class="footer">Built with HTML, CSS and JavaScript <span>•</span> Stack-based undo and redo</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
